@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Restaurant Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #c0392b;
+        }
+        .menu-category {
+            margin-bottom: 30px;
+        }
+        .menu-category h2 {
+            color: #2980b9;
+        }
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        .item-name {
+            font-weight: bold;
+        }
+        .item-description {
+            color: #7f8c8d;
+        }
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .quantity-container input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .add-to-cart {
+            padding: 8px 15px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #27ae60;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .add-to-cart:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <h1>Our Indian Restaurant Menu</h1>
+
+    <div class="menu-category">
+        <h2>Starters</h2>
+        <div class="menu-item">
+            <img src="https://dummyimage.com/100x100/000/fff&text=Samosa" alt="Samosa">
+            <div>
+                <span class="item-name">Samosa</span> - <span class="item-description">Crispy pastry filled with spiced potatoes and peas.</span>
+                <div class="quantity-container">
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart" onclick="addToCart('Samosa', 'Crispy pastry filled with spiced potatoes and peas.', this)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- Repeat for other menu items -->
+    </div>
+
+    <!-- Repeat for other categories -->
+
+    <script>
+        function addToCart(name, description, button) {
+            const quantity = button.previousElementSibling.value;
+            const cartItem = {
+                name: name,
+                description: description,
+                quantity: quantity
+            };
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(cartItem);
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            window.location.href = 'cart.html'; // Redirect to the cart page
+        }
+    </script>
+</body>
+</html>
