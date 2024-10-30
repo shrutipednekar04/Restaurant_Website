@@ -1,61 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #c0392b;
-        }
-        .cart-item {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #f9f9f9;
-        }
-        .item-name {
-            font-weight: bold;
-        }
-        .item-description {
-            color: #7f8c8d;
-        }
-        .item-quantity {
-            margin-top: 5px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        color: #c0392b;
+      }
+      .cart-item {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #f9f9f9;
+      }
+      .item-name {
+        font-weight: bold;
+      }
+      .item-description {
+        color: #7f8c8d;
+      }
+      .item-quantity {
+        margin-top: 5px;
+      }
+      .delete-button {
+        padding: 5px 10px;
+        font-size: 12px;
+        color: #fff;
+        background-color: #e74c3c;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 5px;
+      }
+      .delete-button:hover {
+        background-color: #c0392b;
+      }
+      .order-button {
+        padding: 10px 15px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #27ae60;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .order-button:hover {
+        background-color: #2ecc71;
+      }
+      .bill {
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Your Cart</h1>
     <div id="cart-items"></div>
+    <button class="order-button" onclick="generateBill()">Order Now</button>
+    <div id="bill" class="bill"></div>
+
     <script>
-        function displayCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartItemsContainer = document.getElementById('cart-items');
+      function displayCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItemsContainer = document.getElementById("cart-items");
 
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
-                return;
-            }
-
-            cart.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'cart-item';
-                itemDiv.innerHTML = `
-                    <div class="item-name">${item.name}</div>
-                    <div class="item-description">${item.description}</div>
-                    <div class="item-quantity">Quantity: ${item.quantity}</div>
-                `;
-                cartItemsContainer.appendChild(itemDiv);
-            });
+        cartItemsContainer.innerHTML = "";
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+          return;
         }
 
-        displayCart();
+        cart.forEach((item, index) => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "cart-item";
+          itemDiv.innerHTML = `
+            <div class="item-name">${item.name}</div>
+            <div class="item-description">${item.description}</div>
+            <div class="item-quantity">Quantity: ${item.quantity}</div>
+            <button class="delete-button" onclick="deleteItem(${index})">Delete</button>
+          `;
+          cartItemsContainer.appendChild(itemDiv);
+        });
+      }
+
+      function deleteItem(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1); // Remove the item at the specified index
+        localStorage.setItem("cart", JSON.stringify(cart)); // Update local storage
+        displayCart(); // Refresh the cart display
+        document.getElementById("bill").innerHTML = ""; // Clear the bill
+      }
+
+      function generateBill() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let billContent = "";
+        let totalAmount = 0;
+
+        if (cart.length === 0) {
+          billContent = "<p>Your cart is empty. Cannot generate bill.</p>";
+        } else {
+          billContent += "<h2>Bill Summary:</h2>";
+          cart.forEach((item) => {
+            const itemTotal = item.price * item.quantity; // Calculate total for each item
+            totalAmount += itemTotal; // Add to total amount
+            billContent += `
+              <div>
+                <div class="item-name">${item.name}</div>
+                <div class="item-quantity">Quantity: ${item.quantity}</div>
+                <div class="item-price">Price: ₹${item.price}</div>
+                <div class="item-total">Total: ₹${itemTotal}</div>
+              </div>
+            `;
+          });
+          billContent += `<h3>Total Amount: ₹${totalAmount}</h3>`;
+        }
+
+        document.getElementById("bill").innerHTML = billContent;
+      }
+
+      displayCart();
     </script>
-</body>
+  </body>
 </html>

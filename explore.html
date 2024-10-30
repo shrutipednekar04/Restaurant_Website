@@ -3,159 +3,402 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Indian Restaurant Menu</title>
+    <title>Restaurant Menu</title>
     <style>
       body {
         font-family: Arial, sans-serif;
         margin: 20px;
       }
-      h1 {
-        color: #c0392b;
+      header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      header img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        cursor: pointer;
       }
       .menu-category {
-        margin-bottom: 30px;
-      }
-      .menu-category h2 {
-        color: #2980b9;
+        margin-bottom: 40px;
       }
       .menu-item {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin: 15px 0;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background-color: #f9f9f9;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 30%;
       }
       .menu-item img {
         width: 100px;
-        height: 100px;
-        object-fit: cover;
-        margin-bottom: 10px;
-        border-radius: 8px;
+        height: auto;
+        margin-right: 15px;
       }
       .item-name {
         font-weight: bold;
       }
-      .item-description {
-        color: #7f8c8d;
+      .item-price {
+        color: green;
+        font-weight: bold;
       }
       .quantity-container {
+        margin-left: auto;
+      }
+      .menu-category h2 {
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 10px;
+      }
+      .menu-container {
         display: flex;
-        align-items: center;
-        margin-top: 10px;
-      }
-      .quantity-container input {
-        width: 50px;
-        height: 30px;
-        text-align: center;
-        margin-right: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      .add-to-cart {
-        padding: 8px 15px;
-        font-size: 14px;
-        color: #fff;
-        background-color: #27ae60;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: center;
-      }
-      .add-to-cart:hover {
-        background-color: #2ecc71;
+        flex-wrap: wrap;
+        gap: 20px;
       }
     </style>
   </head>
   <body>
-    <h1>Our Indian Restaurant Menu</h1>
+    <header>
+      <a href="cart.html">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/34/34627.png"
+          alt="Cart Logo"
+          title="Go to Cart"
+        />
+      </a>
+      <h1>Restaurant Menu</h1>
+    </header>
 
+    <!-- Starters -->
     <div class="menu-category">
       <h2>Starters</h2>
-      <div class="menu-item">
-        <img
-          src="https://dummyimage.com/100x100/000/fff&text=Samosa"
-          alt="Samosa"
-        />
-        <div>
-          <span class="item-name">Samosa</span> -
-          <span class="item-description"
-            >Crispy pastry filled with spiced potatoes and peas.</span
-          >
-          <div class="quantity-container">
-            <input type="number" min="1" value="1" class="quantity" />
-            <button
-              class="add-to-cart"
-              onclick="addToCart('Samosa', 'Crispy pastry filled with spiced potatoes and peas.', this)"
+      <div class="menu-container">
+        <div class="menu-item">
+          <img
+            src="https://cdn.zeptonow.com/production///tr:w-600,ar-100-100,pr-true,f-auto,q-80/web/recipes/samosa.png"
+            alt="Samosa"
+          />
+          <div>
+            <span class="item-name">Samosa</span> -
+            <span class="item-description"
+              >Crispy pastry filled with spiced potatoes.</span
             >
-              Add to Cart
-            </button>
+            <div class="item-price">₹50</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Samosa', 'Crispy pastry filled with spiced potatoes.', 50, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Additional starter items -->
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE4ZCG0QsXdLfUdI_lZR7jRjd4kcd0S9YjsA&s"
+            alt="Pakora"
+          />
+          <div>
+            <span class="item-name">Pakora</span> -
+            <span class="item-description"
+              >Crispy fritters made with gram flour and spices.</span
+            >
+            <div class="item-price">₹40</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Pakora', 'Crispy fritters made with gram flour and spices.', 40, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBNzuz3q24Iw8DMkrcbM_VawwABPD_zUFQ5A&s"
+            alt="Crispy"
+          />
+          <div>
+            <span class="item-name">Vegetable Crispy</span> -
+            <span class="item-description"
+              >Mixed vegetables and spices tauce with tangy sause.</span
+            >
+            <div class="item-price">₹150</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Vegetable Biryani', 'Aromatic rice with mixed vegetables and spices.', 150, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="menu-item">
-        <img
-          src="https://dummyimage.com/100x100/000/fff&text=Vada Pav"
-          alt="Samosa"
-        />
-        <div>
-          <span class="item-name">Vada Pav</span> -
-          <span class="item-description"
-            >Crispy pastry filled with spiced potatoes and peas.</span
-          >
-          <div class="quantity-container">
-            <input type="number" min="1" value="1" class="quantity" />
-            <button
-              class="add-to-cart"
-              onclick="addToCart('Vada Pav', 'Crispy pastry filled with spiced potatoes and peas.', this)"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <img
-          src="https://dummyimage.com/100x100/000/fff&text=Idli Sambar"
-          alt="Samosa"
-        />
-        <div>
-          <span class="item-name">Idli Sambar</span> -
-          <span class="item-description"
-            >Crispy pastry filled with spiced potatoes and peas.</span
-          >
-          <div class="quantity-container">
-            <input type="number" min="1" value="1" class="quantity" />
-            <button
-              class="add-to-cart"
-              onclick="addToCart('Idli Sambar', 'Crispy pastry filled with spiced potatoes and peas.', this)"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- Repeat for other menu items -->
     </div>
 
-    <!-- Repeat for other categories -->
+    <!-- Main Course -->
+    <div class="menu-category">
+      <h2>Main Course</h2>
+      <div class="menu-container">
+        <!-- Main Course -->
+        <div class="menu-item">
+          <img
+            src="https://www.secondrecipe.com/wp-content/uploads/2021/08/roti-paneer-butter-masala-500x500.jpg"
+            alt="Paneer Butter Masala"
+          />
+          <div>
+            <span class="item-name">Paneer Butter Masala</span> -
+            <span class="item-description"
+              >Paneer cooked in creamy tomato gravy.</span
+            >
+            <div class="item-price">₹200</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Paneer Butter Masala', 'Paneer cooked in creamy tomato gravy.', 200, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img
+            src="https://en-media.thebetterindia.com/uploads/2022/08/294156779_1082267416022212_8006411537588067133_n-1_11zon-1660981126.jpg"
+            alt="Chole Bhature"
+          />
+          <div>
+            <span class="item-name">Chole Bhature</span> -
+            <span class="item-description"
+              >Spicy chickpeas served with deep-fried bread.</span
+            >
+            <div class="item-price">₹180</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Chole Bhature', 'Spicy chickpeas served with deep-fried bread.', 180, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img
+            src="https://www.cookingcarnival.com/wp-content/uploads/2019/01/Instant-Pot-Vegetable-Biryani-3.jpg"
+            alt="Vegetable Biryani"
+          />
+          <div>
+            <span class="item-name">Vegetable Biryani</span> -
+            <span class="item-description"
+              >Aromatic rice cooked with mixed vegetables and spices.</span
+            >
+            <div class="item-price">₹220</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Vegetable Biryani', 'Aromatic rice cooked with mixed vegetables and spices.', 220, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <h2>Desserts</h2>
+      <div class="menu-container">
+        <!-- Desserts -->
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjp3B4kkEyw1AdjfrLzpg5rkB7gSCbueeiQFVnKaXi9P1Trv17w6ddknu55JG8Trl-wT8&usqp=CAU"
+            alt="Rasgulla"
+          />
+          <div>
+            <span class="item-name">Rasgulla</span> -
+            <span class="item-description"
+              >Soft, spongy balls made from paneer in sugar syrup.</span
+            >
+            <div class="item-price">₹60</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Rasgulla', 'Soft, spongy balls made from paneer in sugar syrup.', 60, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img
+            src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/09/gulab-jamun.jpg"
+            alt="Gulab Jamun"
+          />
+          <div>
+            <span class="item-name">Gulab Jamun</span> -
+            <span class="item-description"
+              >Deep-fried milk balls soaked in sugar syrup.</span
+            >
+            <div class="item-price">₹70</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Gulab Jamun', 'Deep-fried milk balls soaked in sugar syrup.', 70, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img
+            src="https://bakeitketo.com/wp-content/uploads/2021/01/Keto-Vanilla-Ice-Cream-for-BLOG-2-of-2-Compressed-819x1024.jpg"
+            alt="Vanilla Ice Cream"
+          />
+          <div>
+            <span class="item-name">Vanilla Ice Cream</span> -
+            <span class="item-description"
+              >Creamy vanilla-flavored ice cream.</span
+            >
+            <div class="item-price">₹80</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Vanilla Ice Cream', 'Creamy vanilla-flavored ice cream.', 80, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <h2>Beverages</h2>
+      <div class="menu-container">
+        <!-- Beverages -->
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnFuB33vfZ-OPmKGIe5H-XJ5x0pgSnk5jqGw&s"
+            alt="Mango Lassi"
+          />
+          <div>
+            <span class="item-name">Mango Lassi</span> -
+            <span class="item-description"
+              >A refreshing yogurt drink made with mango.</span
+            >
+            <div class="item-price">₹50</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Mango Lassi', 'A refreshing yogurt drink made with mango.', 50, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQEPCOm8TZDBJbFDk9oJRSDbiRnOyg9AbCWA&s"
+            alt="Masala Chai"
+          />
+          <div>
+            <span class="item-name">Masala Chai</span> -
+            <span class="item-description"
+              >Spiced tea brewed with milk and aromatic spices.</span
+            >
+            <div class="item-price">₹20</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Masala Chai', 'Spiced tea brewed with milk and aromatic spices.', 20, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img
+            src="https://img.freepik.com/free-photo/delicious-coffee-beans-cup_23-2150691429.jpg?w=360"
+            alt="Indian Coffee"
+          />
+          <div>
+            <span class="item-name">Indian Coffee</span> -
+            <span class="item-description"
+              >Rich coffee brewed with milk and sugar.</span
+            >
+            <div class="item-price">₹40</div>
+            <div class="quantity-container">
+              <input type="number" min="0" value="0" class="quantity" />
+              <button
+                class="add-to-cart"
+                onclick="addToCart('Indian Coffee', 'Rich coffee brewed with milk and sugar.', 40, this)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
-      function addToCart(name, description, button) {
-        const quantity = button.previousElementSibling.value;
-        const cartItem = {
-          name: name,
-          description: description,
-          quantity: quantity,
-        };
+      function addToCart(itemName, itemDescription, itemPrice, button) {
+        const quantityInput = button.previousElementSibling;
+        const quantity = parseInt(quantityInput.value);
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push(cartItem);
-        localStorage.setItem("cart", JSON.stringify(cart));
+        if (quantity > 0) {
+          // Get the existing cart from local storage or initialize an empty array
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        window.location.href = "cart.html"; // Redirect to the cart page
+          // Create an item objects
+          const item = {
+            name: itemName,
+            description: itemDescription,
+            price: itemPrice,
+            quantity: quantity,
+          };
+
+          // Add the item to the cart
+          cart.push(item);
+
+          // Save the updated cart back to local storage
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          alert(
+            `${quantity} x ${itemName} added to cart. Total: ₹${
+              quantity * itemPrice
+            }`
+          );
+          quantityInput.value = 0;
+        } else {
+          alert("Please select a quantity.");
+        }
       }
     </script>
   </body>
